@@ -1,0 +1,23 @@
+table {
+  width: 100%;
+  overflow-x: auto;
+  border-spacing: 0;
+}
+
+td {
+  text-align: left;
+  border-bottom: 1px solid rgba(224, 224, 224, 1);
+  padding: 10px;
+  line-height: 1.43;
+}
+
+th {
+  text-align: left;
+  border-bottom: 1px solid rgba(224, 224, 224, 1);
+  padding: 10px;
+  line-height: 1.43;
+}
+
+tr {
+  vertical-align: middle;
+}
