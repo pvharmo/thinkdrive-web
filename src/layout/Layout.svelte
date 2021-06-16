@@ -2,16 +2,8 @@
   import Nav from './Nav.svelte'
   import Drawer from 'components/Material/Drawer.svelte'
   import AppBar from 'components/Material/AppBar.svelte'
-  import Folder from 'components/Folder.svelte'
-  import Grid from 'components/Material/Grid.svelte'
-  import ElementAndText from 'components/Material/ElementAndText.svelte'
-  import Icon from 'components/Material/Icon.svelte'
-  import Avatar from 'components/Material/Avatar.svelte'
-  import Table from 'components/Material/Table/Table.svelte'
-  import TableRow from 'components/Material/Table/TableRow.svelte'
-  import TableCell from 'components/Material/Table/TableCell.svelte'
-  import TableHead from 'components/Material/Table/TableHead.svelte'
-  import { mdiTextBoxOutline, mdiGoogleDrive } from '@mdi/js'
+  import FilesList from 'components/FilesList/FilesList.svelte'
+  import FoldersList from 'components/FoldersList/FoldersList.svelte'
 </script>
 
 <div class="app-content">
@@ -26,77 +18,15 @@
     <div class="main">
       <div class="quick-access">
         <h3>Quick Access</h3>
-        <Grid container>
-          <Grid>
-            <Folder>Folder 1</Folder>
-          </Grid>
-          <Grid>
-            <Folder>Folder 2</Folder>
-          </Grid>
-          <Grid>
-            <Folder>Folder 3</Folder>
-          </Grid>
-        </Grid>
+        <FoldersList />
       </div>
       <div class="folders">
         <h3>Folders</h3>
-        <Grid container>
-          <Grid>
-            <Folder>Folder 1</Folder>
-          </Grid>
-          <Grid>
-            <Folder>Folder 2</Folder>
-          </Grid>
-          <Grid>
-            <Folder>Folder 3</Folder>
-          </Grid>
-        </Grid>
+        <FoldersList />
       </div>
       <div class="files">
         <h3>Files</h3>
-        <Table>
-          <thead>
-            <TableRow>
-              <TableHead>
-                <h3>Name</h3>
-              </TableHead>
-              <TableHead>
-                <h3>Location</h3>
-              </TableHead>
-              <TableHead>
-                <h3>Owner</h3>
-              </TableHead>
-              <TableHead>
-                <h3>Last modified</h3>
-              </TableHead>
-            </TableRow>
-          </thead>
-          <tbody>
-            <TableRow>
-              <TableCell>
-                <ElementAndText>
-                  <Icon slot="element" icon={mdiTextBoxOutline} />
-                  <span slot="text">My file</span>
-                </ElementAndText>
-              </TableCell>
-              <TableCell width="250px">
-                <ElementAndText>
-                  <Icon slot="element" icon={mdiGoogleDrive} />
-                  <span slot="text">Google Drive</span>
-                </ElementAndText>
-              </TableCell>
-              <TableCell width="200px">
-                <ElementAndText>
-                  <Avatar slot="element" image="portrait.jpg" alt="avatar" />
-                  <span slot="text">Me</span>
-                </ElementAndText>
-              </TableCell>
-              <TableCell width="200px">
-                <span>Today</span>
-              </TableCell>
-            </TableRow>
-          </tbody>
-        </Table>
+        <FilesList />
       </div>
     </div>
   </div>
