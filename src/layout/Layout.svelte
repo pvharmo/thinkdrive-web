@@ -2,7 +2,7 @@
   import Nav from './Nav.svelte'
   import Drawer from 'components/Material/Drawer.svelte'
   import AppBar from 'components/Material/AppBar.svelte'
-  import FilesList from 'components/FilesList/FilesList.svelte'
+  import FileListApi from 'src/api/File/FileListApi.svelte'
   import FoldersList from 'components/FoldersList/FoldersList.svelte'
 </script>
 
@@ -26,7 +26,7 @@
       </div>
       <div class="files">
         <h3>Files</h3>
-        <FilesList />
+        <FileListApi location="my-folder/another-folder/" />
       </div>
     </div>
   </div>

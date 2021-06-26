@@ -1,0 +1,7 @@
+const client = fetch
+
+const apiUri = 'http://localhost:3000/'
+
+export const get = async (path: string): Promise<any> => {
+  return await (await client(apiUri + path)).json()
+}
