@@ -9,7 +9,9 @@
 <Grid container>
   {#each folders as folder}
     <Grid>
-      <FolderComponent>{folder.name}</FolderComponent>
+      <FolderComponent link={folder.location + folder.name + '/'}>
+        {folder.name}
+      </FolderComponent>
     </Grid>
   {/each}
 </Grid>

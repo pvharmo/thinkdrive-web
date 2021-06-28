@@ -7,8 +7,9 @@ export interface File {
   owner: string | undefined
   ownerAvatar: string | undefined
   lastModified: string
+  type: string
 }
 
 export const list = (path: string) => {
-  return http.get(`container/${user.id}/${path}`)
+  return http.get(`container/${user.id}${path}`)
 }

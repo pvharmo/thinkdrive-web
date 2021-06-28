@@ -7,8 +7,9 @@ export interface Folder {
   owner: string | undefined
   ownerAvatar: string | undefined
   lastModified: string
+  type: string
 }
 
 export const list = async (path: string) => {
-  return await http.get(`container/${user.id}/${path}`)
+  return await http.get(`container/${user.id}${path}`)
 }

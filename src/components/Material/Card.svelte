@@ -4,7 +4,7 @@
   export let interactive = false
 </script>
 
-<div class="card-container" on:message>
+<div class="card-container" on:message on:click>
   <Paper {interactive}>
     <div class="content-container">
       <slot />

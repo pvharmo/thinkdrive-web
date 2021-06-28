@@ -4,6 +4,7 @@
   import AppBar from 'components/Material/AppBar.svelte'
   import FileListApi from 'src/api/File/FileListApi.svelte'
   import FolderListApi from 'src/api/Folder/FolderListApi.svelte'
+  import { location } from 'svelte-spa-router'
 </script>
 
 <div class="app-content">
@@ -18,11 +19,11 @@
     <div class="main">
       <div class="folders">
         <h3>Folders</h3>
-        <FolderListApi location="my-folder/" />
+        <FolderListApi location={$location} />
       </div>
       <div class="files">
         <h3>Files</h3>
-        <FileListApi location="my-folder/another-folder/" />
+        <FileListApi location={$location} />
       </div>
     </div>
   </div>
