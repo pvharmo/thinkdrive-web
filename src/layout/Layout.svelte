@@ -3,7 +3,7 @@
   import Drawer from 'components/Material/Drawer.svelte'
   import AppBar from 'components/Material/AppBar.svelte'
   import FileListApi from 'src/api/File/FileListApi.svelte'
-  import FoldersList from 'components/FoldersList/FoldersList.svelte'
+  import FolderListApi from 'src/api/Folder/FolderListApi.svelte'
 </script>
 
 <div class="app-content">
@@ -16,13 +16,9 @@
       <Nav />
     </Drawer>
     <div class="main">
-      <div class="quick-access">
-        <h3>Quick Access</h3>
-        <FoldersList />
-      </div>
       <div class="folders">
         <h3>Folders</h3>
-        <FoldersList />
+        <FolderListApi location="my-folder/" />
       </div>
       <div class="files">
         <h3>Files</h3>

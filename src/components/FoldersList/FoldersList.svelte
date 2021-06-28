@@ -1,16 +1,15 @@
-<script>
-  import Folder from 'components/Folder.svelte'
+<script lang="ts">
+  import FolderComponent from 'components/Folder.svelte'
   import Grid from 'components/Material/Grid.svelte'
+  import type { Folder } from 'src/api/Folder/Folder'
+
+  export let folders: Folder[] = []
 </script>
 
 <Grid container>
-  <Grid>
-    <Folder>Folder 1</Folder>
-  </Grid>
-  <Grid>
-    <Folder>Folder 2</Folder>
-  </Grid>
-  <Grid>
-    <Folder>Folder 3</Folder>
-  </Grid>
+  {#each folders as folder}
+    <Grid>
+      <FolderComponent>{folder.name}</FolderComponent>
+    </Grid>
+  {/each}
 </Grid>
