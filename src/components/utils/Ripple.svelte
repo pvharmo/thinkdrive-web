@@ -21,7 +21,9 @@
     rippleContainer.appendChild(ripple)
 
     setTimeout(() => {
-      rippleContainer.removeChild(ripple)
+      try {
+        rippleContainer.removeChild(ripple)
+      } catch {}
     }, 700)
   }
 </script>
