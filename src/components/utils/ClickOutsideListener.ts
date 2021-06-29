@@ -3,12 +3,12 @@ interface clickOutsideInterface {
   cb: () => void
 }
 
-interface enabledIterface {
+interface enabledInterface {
   enabled: boolean
 }
 
 interface clickOutsideReturnInterface {
-  update: (enabled: enabledIterface) => void
+  update: (enabled: enabledInterface) => void
   destroy: () => void
 }
 
@@ -22,7 +22,7 @@ export default (
     }
   }
 
-  function update({ enabled }: enabledIterface) {
+  async function update({ enabled }: enabledInterface) {
     if (enabled) {
       window.addEventListener('click', handleOutsideClick)
     } else {
