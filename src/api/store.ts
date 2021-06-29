@@ -1,0 +1,6 @@
+import { writable } from 'svelte/store'
+import type { File } from 'src/api/File/File'
+import type { Folder } from 'src/api/Folder/Folder'
+
+export const files = writable<File[]>([])
+export const folders = writable<Folder[]>([])

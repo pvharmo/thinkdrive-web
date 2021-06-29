@@ -2,7 +2,7 @@
   import Ripple from '../utils/Ripple.svelte'
 </script>
 
-<li>
+<li on:click>
   <slot />
   <Ripple />
 </li>

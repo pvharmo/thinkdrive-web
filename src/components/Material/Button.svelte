@@ -4,7 +4,7 @@
   export let raised = false
 </script>
 
-<button class:ripple class:raised on:message>
+<button class:ripple class:raised on:message on:click>
   <slot />
   {#if ripple}
     <Ripple />

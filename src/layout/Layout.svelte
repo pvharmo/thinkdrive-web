@@ -5,6 +5,9 @@
   import FileListApi from 'src/api/File/FileListApi.svelte'
   import FolderListApi from 'src/api/Folder/FolderListApi.svelte'
   import { location } from 'svelte-spa-router'
+  import { fetchFilesAndFolders } from 'src/api/actions'
+
+  $: fetchFilesAndFolders($location)
 </script>
 
 <div class="app-content">
@@ -19,11 +22,11 @@
     <div class="main">
       <div class="folders">
         <h3>Folders</h3>
-        <FolderListApi location={$location} />
+        <FolderListApi />
       </div>
       <div class="files">
         <h3>Files</h3>
-        <FileListApi location={$location} />
+        <FileListApi />
       </div>
     </div>
   </div>
