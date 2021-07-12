@@ -8,9 +8,10 @@
   import type { File } from 'src/api/File/File'
 
   export let row: File
+  export let selected: boolean = false
 </script>
 
-<TableRow>
+<TableRow highlight={selected} interactive on:click>
   <TableCell>
     <ElementAndText>
       <Icon slot="element" icon={mdiTextBoxOutline} />

@@ -6,9 +6,10 @@
   import { push } from 'svelte-spa-router'
 
   export let link: string
+  export let selected: boolean
 </script>
 
-<Card interactive on:click={() => push(link)}>
+<Card interactive {selected} on:click on:dblclick={() => push(link)}>
   <ElementAndText>
     <Icon slot="element" icon={mdiFolder} />
     <h3 slot="text"><slot /></h3>

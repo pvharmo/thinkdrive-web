@@ -4,8 +4,12 @@
   import TableHead from 'components/Material/Table/TableHead.svelte'
   import FileRow from './FileRow.svelte'
   import type { File } from 'src/api/File/File'
+  import { createEventDispatcher } from 'svelte'
 
   export let rows: File[]
+  export let selected: File[] = []
+
+  const dispatch = createEventDispatcher()
 </script>
 
 <Table>
@@ -27,7 +31,11 @@
   </thead>
   <tbody>
     {#each rows as row}
-      <FileRow {row} />
+      <FileRow
+        {row}
+        selected={selected.includes(row)}
+        on:click={() => dispatch('select', { value: row })}
+      />
     {/each}
   </tbody>
 </Table>

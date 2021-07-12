@@ -2,13 +2,9 @@ import * as http from 'src/http.client'
 import user from 'src/user'
 import type { GenericObject } from '../object'
 
-export interface Folder extends GenericObject {
-  owner: string | undefined
-  ownerAvatar: string | undefined
-}
+export interface Folder extends GenericObject {}
 
 export const list = async (path: string) => {
-  console.log(path)
   if (path[path.length - 1] !== '/') {
     path += '/'
   }
@@ -16,5 +12,9 @@ export const list = async (path: string) => {
 }
 
 export const create = async (path: string, name: string) => {
-  await http.post(`container/${user.id}${path}${name}`)
+  return await http.post(`container/${user.id}${path}${name}`)
+}
+
+export const destroy = async (path: string) => {
+  return await http.del(`container/${user.id}${path}`)
 }

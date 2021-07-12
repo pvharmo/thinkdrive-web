@@ -14,3 +14,11 @@ export const post = async (path: string, body?: any): Promise<any> => {
     })
   ).json()
 }
+
+export const del = async (path: string): Promise<any> => {
+  return await (
+    await client(apiUri + path, {
+      method: 'DELETE'
+    })
+  ).json()
+}
