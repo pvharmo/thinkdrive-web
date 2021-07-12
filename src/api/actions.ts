@@ -4,7 +4,7 @@ import { setFiles, setFolders } from './mutations'
 import { GenericObject, ObjectType } from './object'
 
 export const fetchFilesAndFolders = async (path: string) => {
-  const list: GenericObject[] = await folder.list(path)
+  const list: GenericObject[] = await folder.listContent(path)
 
   const files = list.filter(
     (x) => x.type === ObjectType.object && x.name !== '.thinkdrive.container'

@@ -7,5 +7,11 @@ export interface File extends GenericObject {
 }
 
 export const destroy = async (path: string) => {
-  return await http.del(`container/${user.id}${path}`)
+  return await http.del(`object/${user.id}${path}`)
+}
+
+export const move = async (path: string, newPath: string) => {
+  return await http.put(`object/${user.id}${path}`, {
+    newPath
+  })
 }

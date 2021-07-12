@@ -10,6 +10,8 @@
   import Breadcrumb from 'src/api/Breadcrumb.svelte'
   import Toolbar from 'src/components/Material/Toolbar.svelte'
   import ObjectActions from 'src/api/ObjectActions.svelte'
+  import RenameFolderDialog from 'src/api/Folder/RenameFolderDialog.svelte'
+  import RenameFileDialog from 'src/api/File/RenameFileDialog.svelte'
   import * as folder from 'src/api/Folder/Folder'
   import * as file from 'src/api/File/File'
 
@@ -17,6 +19,9 @@
 
   let selectedFolders: folder.Folder[] = []
   let selectedFiles: file.File[] = []
+
+  let openDialogRenameFolder = false
+  let openDialogRenameFile = false
 
   const select = (type: string, event: CustomEvent) => {
     if (type === 'container') {
@@ -37,7 +42,22 @@
       fetchFilesAndFolders($location)
     }
   }
+
+  const renameObject = async () => {
+    if (selectedFiles.length > 0) {
+      openDialogRenameFile = true
+    } else {
+      openDialogRenameFolder = true
+    }
+  }
 </script>
+
+<RenameFolderDialog
+  open={openDialogRenameFolder}
+  currentName={selectedFolders[0]?.name}
+  on:close={() => (openDialogRenameFolder = false)}
+/>
+<RenameFileDialog open={openDialogRenameFile} currentName={selectedFiles[0]?.name} />
 
 <div class="app-content">
   <AppBar>
@@ -51,7 +71,7 @@
     <div class="main row">
       <Toolbar>
         <Breadcrumb slot="title" />
-        <ObjectActions on:delete={deleteObject} slot="right-content" />
+        <ObjectActions on:delete={deleteObject} on:rename={renameObject} slot="right-content" />
       </Toolbar>
       <div class="folders">
         <h3>Folders</h3>

@@ -4,7 +4,7 @@ import type { GenericObject } from '../object'
 
 export interface Folder extends GenericObject {}
 
-export const list = async (path: string) => {
+export const listContent = async (path: string) => {
   if (path[path.length - 1] !== '/') {
     path += '/'
   }
@@ -17,4 +17,10 @@ export const create = async (path: string, name: string) => {
 
 export const destroy = async (path: string) => {
   return await http.del(`container/${user.id}${path}`)
+}
+
+export const move = async (path: string, newPath: string) => {
+  return await http.put(`container/${user.id}${path}`, {
+    newPath
+  })
 }
