@@ -12,9 +12,14 @@
   const renameEvent = () => {
     dispatch('rename')
   }
+
+  const moveEvent = () => {
+    dispatch('move')
+  }
 </script>
 
 <div>
   <Button on:click={deleteEvent}>Delete</Button>
   <Button on:click={renameEvent}>Rename</Button>
+  <Button on:click={moveEvent}>Move</Button>
 </div>

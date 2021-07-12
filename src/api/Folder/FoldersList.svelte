@@ -16,7 +16,7 @@
       <FolderComponent
         selected={selected.includes(folder)}
         on:click={() => dispatch('select', { value: folder })}
-        link={folder.location + folder.name + '/'}
+        on:dblclick={() => dispatch('goto', { value: folder.location + folder.name + '/' })}
       >
         {folder.name}
       </FolderComponent>

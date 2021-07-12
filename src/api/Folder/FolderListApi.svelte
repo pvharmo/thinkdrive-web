@@ -7,4 +7,4 @@
   export let selected: Folder[] = []
 </script>
 
-<FoldersList folders={$folders} {selected} on:select />
+<FoldersList folders={$folders} {selected} on:select on:goto />

@@ -14,6 +14,8 @@
   import RenameFileDialog from 'src/api/File/RenameFileDialog.svelte'
   import * as folder from 'src/api/Folder/Folder'
   import * as file from 'src/api/File/File'
+  import MoveFolderDialog from 'src/api/Folder/MoveFolderDialog.svelte'
+  import { push } from 'svelte-spa-router'
 
   $: fetchFilesAndFolders($location)
 
@@ -22,6 +24,9 @@
 
   let openDialogRenameFolder = false
   let openDialogRenameFile = false
+
+  let openDialogMoveFolder = false
+  let openDialogMoveFile = false
 
   const select = (type: string, event: CustomEvent) => {
     if (type === 'container') {
@@ -50,6 +55,14 @@
       openDialogRenameFolder = true
     }
   }
+
+  const moveObject = async () => {
+    if (selectedFiles.length > 0) {
+      openDialogMoveFile = true
+    } else {
+      openDialogMoveFolder = true
+    }
+  }
 </script>
 
 <RenameFolderDialog
@@ -57,7 +70,23 @@
   currentName={selectedFolders[0]?.name}
   on:close={() => (openDialogRenameFolder = false)}
 />
-<RenameFileDialog open={openDialogRenameFile} currentName={selectedFiles[0]?.name} />
+<RenameFileDialog
+  open={openDialogRenameFile}
+  currentName={selectedFiles[0]?.name}
+  on:close={() => (openDialogRenameFile = false)}
+/>
+
+<MoveFolderDialog
+  open={openDialogMoveFolder}
+  currentName={selectedFolders[0]?.name}
+  on:close={() => (openDialogMoveFolder = false)}
+/>
+
+<MoveFolderDialog
+  open={openDialogMoveFile}
+  currentName={selectedFiles[0]?.name}
+  on:close={() => (openDialogMoveFile = false)}
+/>
 
 <div class="app-content">
   <AppBar>
@@ -71,12 +100,18 @@
     <div class="main row">
       <Toolbar>
         <Breadcrumb slot="title" />
-        <ObjectActions on:delete={deleteObject} on:rename={renameObject} slot="right-content" />
+        <ObjectActions
+          on:delete={deleteObject}
+          on:rename={renameObject}
+          on:move={moveObject}
+          slot="right-content"
+        />
       </Toolbar>
       <div class="folders">
         <h3>Folders</h3>
         <FolderListApi
           on:select={(event) => select('container', event)}
+          on:goto={(event) => push(event.detail.value)}
           selected={selectedFolders}
         />
       </div>
