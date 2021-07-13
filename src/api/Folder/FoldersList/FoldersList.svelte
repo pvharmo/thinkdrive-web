@@ -1,5 +1,5 @@
 <script lang="ts">
-  import FolderComponent from 'src/api/Folder/FolderComponent.svelte'
+  import FolderComponent from 'src/api/Folder/FoldersList/FolderComponent.svelte'
   import Grid from 'components/Material/Grid.svelte'
   import type { Folder } from 'src/api/Folder/Folder'
   import { createEventDispatcher } from 'svelte'

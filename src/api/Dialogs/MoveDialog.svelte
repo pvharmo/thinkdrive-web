@@ -5,8 +5,8 @@
   import type { Folder } from 'src/api/Folder/Folder'
   import { location } from 'svelte-spa-router'
   import { createEventDispatcher, onMount } from 'svelte'
-  import { fetchFilesAndFolders } from '../actions'
-  import FoldersList from './FoldersList.svelte'
+  import { fetchFilesAndFolders } from 'src/api/actions'
+  import FoldersList from 'src/api/Folder/FoldersList/FoldersList.svelte'
   import { ObjectType } from 'src/api/object'
   import type { GenericObject } from 'src/api/object'
 

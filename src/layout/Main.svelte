@@ -1,0 +1,92 @@
+<script lang="ts">
+  import Breadcrumb from 'src/api/Breadcrumb.svelte'
+  import Toolbar from 'src/components/Material/Toolbar.svelte'
+  import ObjectActions from 'src/api/ObjectActions.svelte'
+  import { push } from 'svelte-spa-router'
+  import { location } from 'svelte-spa-router'
+  import { fetchFilesAndFolders } from 'src/api/actions'
+  import * as folder from 'src/api/Folder/Folder'
+  import * as file from 'src/api/File/File'
+  import RenameDialog from 'src/api/Dialogs/RenameDialog.svelte'
+  import MoveDialog from 'src/api/Dialogs/MoveDialog.svelte'
+  import FileList from 'src/api/File/FilesList/FilesList.svelte'
+  import { files } from 'src/api/store'
+  import { folders } from 'src/api/store'
+  import FoldersList from 'src/api/Folder/FoldersList/FoldersList.svelte'
+
+  $: fetchFilesAndFolders($location)
+
+  let selectedFolders: folder.Folder[] = []
+  let selectedFiles: file.File[] = []
+
+  let openDialogRename = false
+
+  let openDialogMove = false
+
+  const select = (type: string, event: CustomEvent) => {
+    if (type === 'container') {
+      selectedFolders = [event.detail.value]
+      selectedFiles = []
+    } else {
+      selectedFiles = [event.detail.value]
+      selectedFolders = []
+    }
+  }
+
+  const deleteObject = async () => {
+    if (selectedFiles.length > 0) {
+      await file.destroy(selectedFiles[0].location + selectedFiles[0].name)
+      fetchFilesAndFolders($location)
+    } else {
+      await folder.destroy(selectedFolders[0].location + selectedFolders[0].name + '/')
+      fetchFilesAndFolders($location)
+    }
+  }
+
+  const moveObject = async () => {
+    openDialogMove = true
+  }
+</script>
+
+<RenameDialog
+  open={openDialogRename}
+  currentName={selectedFolders.length > 0 ? selectedFolders[0]?.name : selectedFiles[0]?.name}
+  on:close={() => (openDialogRename = false)}
+/>
+
+<MoveDialog
+  open={openDialogMove}
+  currentName={selectedFolders.length > 0 ? selectedFolders[0]?.name : selectedFiles[0]?.name}
+  on:close={() => (openDialogMove = false)}
+/>
+
+<Toolbar>
+  <Breadcrumb slot="title" />
+  <ObjectActions
+    on:delete={deleteObject}
+    on:rename={() => {
+      openDialogRename = true
+    }}
+    on:move={moveObject}
+    slot="right-content"
+  />
+</Toolbar>
+<div class="folders">
+  <h3>Folders</h3>
+  <FoldersList
+    folders={$folders}
+    selected={selectedFolders}
+    on:select={(event) => select('container', event)}
+    on:goto={(event) => push(event.detail.value)}
+  />
+</div>
+<div class="files">
+  <h3>Files</h3>
+  <FileList rows={$files} on:select={(event) => select('object', event)} selected={selectedFiles} />
+</div>
+
+<style>
+  .folders {
+    margin-bottom: 20px;
+  }
+</style>

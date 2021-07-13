@@ -6,10 +6,18 @@
   import Paper from 'components/Material/Paper.svelte'
   import Icon from 'components/Material/Icon.svelte'
   import ElementAndText from 'components/Material/ElementAndText.svelte'
-  import NewFolderDialog from 'src/api/Folder/NewFolderDialog.svelte'
+  import NewDialog from 'src/api/Dialogs/NewDialog.svelte'
   import { mdiHistory, mdiStarOutline, mdiTrashCanOutline } from '@mdi/js'
 
   let open = false
+  let newObject = {
+    type: 'folder'
+  }
+
+  const createObject = (objectDescription: any) => {
+    open = true
+    newObject = objectDescription
+  }
 </script>
 
 <div class="new-button">
@@ -17,7 +25,7 @@
     <Button raised slot="activatable">New</Button>
     <Paper elevation={4} slot="popover">
       <List>
-        <ListItem on:click={() => (open = true)}>Create folder</ListItem>
+        <ListItem on:click={() => createObject({ type: 'folder' })}>Create folder</ListItem>
         <ListItem>Item 2</ListItem>
         <ListItem>Item 3</ListItem>
       </List>
@@ -45,7 +53,7 @@
   </ListItem>
 </List>
 
-<NewFolderDialog {open} on:close={() => (open = false)} />
+<NewDialog {open} obj={newObject} on:close={() => (open = false)} />
 
 <style>
   .new-button {

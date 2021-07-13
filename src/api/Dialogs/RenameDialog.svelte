@@ -4,7 +4,7 @@
   import { move as moveFolder } from 'src/api/Folder/Folder'
   import { location } from 'svelte-spa-router'
   import { createEventDispatcher } from 'svelte'
-  import { fetchFilesAndFolders } from '../actions'
+  import { fetchFilesAndFolders } from 'src/api/actions'
 
   const dispatch = createEventDispatcher()
 
