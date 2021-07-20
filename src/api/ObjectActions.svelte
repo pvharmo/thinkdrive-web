@@ -16,9 +16,14 @@
   const moveEvent = () => {
     dispatch('move')
   }
+
+  const shareEvent = () => {
+    dispatch('share')
+  }
 </script>
 
 <div>
+  <Button on:click={shareEvent}>Share</Button>
   <Button on:click={deleteEvent}>Delete</Button>
   <Button on:click={renameEvent}>Rename</Button>
   <Button on:click={moveEvent}>Move</Button>

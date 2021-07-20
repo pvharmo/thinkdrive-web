@@ -13,6 +13,7 @@
   import { files } from 'src/api/store'
   import { folders } from 'src/api/store'
   import FoldersList from 'src/api/Folder/FoldersList/FoldersList.svelte'
+  import ShareDialog from 'src/api/Dialogs/ShareDialog.svelte'
 
   $: fetchFilesAndFolders($location)
 
@@ -22,6 +23,8 @@
   let openDialogRename = false
 
   let openDialogMove = false
+
+  let openDialogShare = false
 
   const select = (type: string, event: CustomEvent) => {
     if (type === 'container') {
@@ -60,14 +63,23 @@
   on:close={() => (openDialogMove = false)}
 />
 
+<ShareDialog
+  open={openDialogShare}
+  object={selectedFolders.length > 0 ? selectedFolders[0] : selectedFiles[0]}
+  on:close={() => (openDialogShare = false)}
+/>
+
 <Toolbar>
   <Breadcrumb slot="title" />
   <ObjectActions
     on:delete={deleteObject}
+    on:move={moveObject}
+    on:share={() => {
+      openDialogShare = true
+    }}
     on:rename={() => {
       openDialogRename = true
     }}
-    on:move={moveObject}
     slot="right-content"
   />
 </Toolbar>
