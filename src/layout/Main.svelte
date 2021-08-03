@@ -10,21 +10,24 @@
   import RenameDialog from 'src/api/Dialogs/RenameDialog.svelte'
   import MoveDialog from 'src/api/Dialogs/MoveDialog.svelte'
   import FileList from 'src/api/File/FilesList/FilesList.svelte'
-  import { files } from 'src/api/store'
-  import { folders } from 'src/api/store'
+  import { files, folders } from 'src/api/store'
   import FoldersList from 'src/api/Folder/FoldersList/FoldersList.svelte'
   import ShareDialog from 'src/api/Dialogs/ShareDialog.svelte'
 
   $: fetchFilesAndFolders($location)
 
   let selectedFolders: folder.Folder[] = []
-  let selectedFiles: file.File[] = []
+  let selectedFiles: file.FileData[] = []
 
   let openDialogRename = false
 
   let openDialogMove = false
 
   let openDialogShare = false
+
+  const downloadObject = () => {
+    file.download(selectedFiles[0].location + selectedFiles[0].name)
+  }
 
   const select = (type: string, event: CustomEvent) => {
     if (type === 'container') {
@@ -72,6 +75,7 @@
 <Toolbar>
   <Breadcrumb slot="title" />
   <ObjectActions
+    on:download={downloadObject}
     on:delete={deleteObject}
     on:move={moveObject}
     on:share={() => {

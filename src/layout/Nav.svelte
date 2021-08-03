@@ -8,6 +8,9 @@
   import ElementAndText from 'components/Material/ElementAndText.svelte'
   import NewDialog from 'src/api/Dialogs/NewDialog.svelte'
   import { mdiHistory, mdiStarOutline, mdiTrashCanOutline } from '@mdi/js'
+  import UploadDialog from 'src/api/Dialogs/UploadDialog.svelte'
+
+  let openDialogUpload = false
 
   let open = false
   let newObject = {
@@ -26,7 +29,7 @@
     <Paper elevation={4} slot="popover">
       <List>
         <ListItem on:click={() => createObject({ type: 'folder' })}>Create folder</ListItem>
-        <ListItem>Item 2</ListItem>
+        <ListItem on:click={() => (openDialogUpload = true)}>Upload</ListItem>
         <ListItem>Item 3</ListItem>
       </List>
     </Paper>
@@ -54,6 +57,7 @@
 </List>
 
 <NewDialog {open} obj={newObject} on:close={() => (open = false)} />
+<UploadDialog open={openDialogUpload} on:close={() => (openDialogUpload = false)} />
 
 <style>
   .new-button {

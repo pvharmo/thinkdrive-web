@@ -20,6 +20,10 @@
   const shareEvent = () => {
     dispatch('share')
   }
+
+  const downloadEvent = () => {
+    dispatch('download')
+  }
 </script>
 
 <div>
@@ -27,4 +31,5 @@
   <Button on:click={deleteEvent}>Delete</Button>
   <Button on:click={renameEvent}>Rename</Button>
   <Button on:click={moveEvent}>Move</Button>
+  <Button on:click={downloadEvent}>Download</Button>
 </div>

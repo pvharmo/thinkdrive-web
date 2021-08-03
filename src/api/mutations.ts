@@ -1,8 +1,8 @@
 import { files, folders } from 'src/api/store'
-import type { File } from 'src/api/File/File'
+import type { FileData } from 'src/api/File/File'
 import type { Folder } from 'src/api/Folder/Folder'
 
-export const setFiles = (newFiles: File[]) => {
+export const setFiles = (newFiles: FileData[]) => {
   files.set(newFiles)
 }
 
