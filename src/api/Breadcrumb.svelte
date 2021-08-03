@@ -1,7 +1,18 @@
-<script>
-  import { location } from 'svelte-spa-router'
+<script lang="typescript">
+  import { location, push } from 'svelte-spa-router'
+  import Button from 'src/components/Material/Button.svelte'
+  import Icon from 'src/components/Material/Icon.svelte'
+  import { mdiChevronRight } from '@mdi/js'
 
-  $location
+  $: folders = $location.split('/').slice(1, -1)
+
+  const go = (i: number) => {
+    const path = '/' + folders.slice(0, i).join()
+    push(path)
+  }
 </script>
 
-<h1>{$location}</h1>
+<Button on:click={() => go(0)}>ThinkDrive</Button>
+{#each folders as folder, i}
+  <Icon icon={mdiChevronRight} /><Button on:click={() => go(i + 1)}>{folder}</Button>
+{/each}
