@@ -40,6 +40,12 @@
     selectedFolder = undefined
   }
 
+  const reloadPath = (_: boolean) => {
+    goto('/')
+  }
+
+  $: reloadPath(open)
+
   onMount(() => {
     goto('/')
   })
