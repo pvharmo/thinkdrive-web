@@ -1,6 +1,5 @@
 <script lang="ts">
-  import Dialog from 'components/Material/Dialog.svelte'
-  import Button from 'src/components/Material/Button.svelte'
+  import { Dialog, Button } from 'minmat'
   import { listContent, move as moveFolder } from 'src/api/Folder/Folder'
   import type { Folder } from 'src/api/Folder/Folder'
   import { location } from 'svelte-spa-router'

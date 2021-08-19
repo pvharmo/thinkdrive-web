@@ -1,7 +1,5 @@
 <script lang="ts">
-  import Table from 'components/Material/Table/Table.svelte'
-  import TableRow from 'components/Material/Table/TableRow.svelte'
-  import TableHead from 'components/Material/Table/TableHead.svelte'
+  import { Table, TableRow, TableHead } from 'minmat'
   import FileRow from './FileRow.svelte'
   import type { FileData } from 'src/api/File/File'
   import { createEventDispatcher } from 'svelte'

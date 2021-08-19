@@ -1,10 +1,8 @@
 <script lang="ts">
-  import Dialog from 'components/Material/Dialog.svelte'
-  import Button from 'src/components/Material/Button.svelte'
+  import { Dialog, Button, Paper } from 'minmat'
   import { updateStatus, getStatus } from 'src/api/Share'
   import { createEventDispatcher } from 'svelte'
   import type { GenericObject } from '../object'
-  import Paper from 'src/components/Material/Paper.svelte'
 
   const dispatch = createEventDispatcher()
 

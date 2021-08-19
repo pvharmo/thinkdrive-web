@@ -1,7 +1,6 @@
 <script lang="ts">
   import Nav from './Nav.svelte'
-  import Drawer from 'components/Material/Drawer.svelte'
-  import AppBar from 'components/Material/AppBar.svelte'
+  import { Drawer, AppBar } from 'minmat'
 
   import MetadataPanel from 'src/api/MetadataPanel.svelte'
   import Main from './Main.svelte'

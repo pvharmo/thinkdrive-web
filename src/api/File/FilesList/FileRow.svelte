@@ -1,13 +1,9 @@
 <script lang="ts">
-  import ElementAndText from 'components/Material/ElementAndText.svelte'
-  import Icon from 'components/Material/Icon.svelte'
-  import Avatar from 'components/Material/Avatar.svelte'
-  import TableRow from 'components/Material/Table/TableRow.svelte'
-  import TableCell from 'components/Material/Table/TableCell.svelte'
+  import { TableCell, TableRow, Avatar, Icon, ElementAndText } from 'minmat'
   import { mdiTextBoxOutline, mdiGoogleDrive } from '@mdi/js'
-  import type { File } from 'src/api/File/File'
+  import type { FileData } from 'src/api/File/File'
 
-  export let row: File
+  export let row: FileData
   export let selected: boolean = false
 </script>
 

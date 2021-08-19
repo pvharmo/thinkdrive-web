@@ -1,7 +1,6 @@
 <script lang="typescript">
   import { location, push } from 'svelte-spa-router'
-  import Button from 'src/components/Material/Button.svelte'
-  import Icon from 'src/components/Material/Icon.svelte'
+  import { Icon, Button } from 'minmat'
   import { mdiChevronRight } from '@mdi/js'
 
   $: folders = $location.split('/').slice(1, -1)

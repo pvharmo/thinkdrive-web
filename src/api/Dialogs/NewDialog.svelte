@@ -1,6 +1,5 @@
 <script lang="ts">
-  import Dialog from 'components/Material/Dialog.svelte'
-  import Button from 'src/components/Material/Button.svelte'
+  import { Dialog, Button } from 'minmat'
   import { create as createFolder } from 'src/api/Folder/Folder'
   import { location } from 'svelte-spa-router'
   import { createEventDispatcher } from 'svelte'

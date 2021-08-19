@@ -6,7 +6,6 @@ module.exports = {
   },
   root: './src',
   alias: {
-    components: './src/components',
     public: './public',
     src: './src'
   },

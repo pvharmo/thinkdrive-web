@@ -1,11 +1,6 @@
 <script lang="ts">
-  import Button from 'components/Material/Button.svelte'
-  import Popover from 'components/utils/Popover.svelte'
-  import List from 'components/Material/List.svelte'
-  import ListItem from 'components/Material/ListItem.svelte'
-  import Paper from 'components/Material/Paper.svelte'
-  import Icon from 'components/Material/Icon.svelte'
-  import ElementAndText from 'components/Material/ElementAndText.svelte'
+  import { Button, List, ListItem, Paper, Icon, ElementAndText } from 'minmat'
+  import Popover from 'minmat/utils/Popover.svelte'
   import NewDialog from 'src/api/Dialogs/NewDialog.svelte'
   import { mdiHistory, mdiStarOutline, mdiTrashCanOutline } from '@mdi/js'
   import UploadDialog from 'src/api/Dialogs/UploadDialog.svelte'

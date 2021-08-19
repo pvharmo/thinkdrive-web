@@ -1,6 +1,6 @@
 <script lang="ts">
   import Breadcrumb from 'src/api/Breadcrumb.svelte'
-  import Toolbar from 'src/components/Material/Toolbar.svelte'
+  import { Toolbar } from 'minmat'
   import ObjectActions from 'src/api/ObjectActions.svelte'
   import { push } from 'svelte-spa-router'
   import { location } from 'svelte-spa-router'

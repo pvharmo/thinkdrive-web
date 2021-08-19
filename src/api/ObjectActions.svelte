@@ -1,7 +1,7 @@
 <script>
   import { createEvent } from '@testing-library/dom'
 
-  import Button from 'src/components/Material/Button.svelte'
+  import { Button } from 'minmat'
   import { createEventDispatcher } from 'svelte'
   const dispatch = createEventDispatcher()
 

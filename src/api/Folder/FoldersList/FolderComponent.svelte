@@ -1,7 +1,5 @@
 <script lang="ts">
-  import Card from 'components/Material/Card.svelte'
-  import Icon from 'components/Material/Icon.svelte'
-  import ElementAndText from 'components/Material/ElementAndText.svelte'
+  import { Card, Icon, ElementAndText } from 'minmat'
   import { mdiFolder } from '@mdi/js'
 
   export let selected: boolean
