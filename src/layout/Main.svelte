@@ -41,11 +41,15 @@
 
   const deleteObject = async () => {
     if (selectedFiles.length > 0) {
-      await file.destroy(selectedFiles[0].location + selectedFiles[0].name)
-      fetchFilesAndFolders($location)
+      if (confirm(`Are you sure you want to delete this ${selectedFiles[0].name}?`)) {
+        await file.destroy(selectedFiles[0].location + selectedFiles[0].name)
+        fetchFilesAndFolders($location)
+      }
     } else {
-      await folder.destroy(selectedFolders[0].location + selectedFolders[0].name + '/')
-      fetchFilesAndFolders($location)
+      if (confirm(`Are you sure you want to delete ${selectedFolders[0].name}?`)) {
+        await folder.destroy(selectedFolders[0].location + selectedFolders[0].name + '/')
+        fetchFilesAndFolders($location)
+      }
     }
   }
 
