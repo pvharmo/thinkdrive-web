@@ -1,6 +1,6 @@
 <script lang="ts">
   import { TableCell, TableRow, Avatar, Icon, ElementAndText } from 'minmat'
-  import { mdiTextBoxOutline, mdiGoogleDrive } from '@mdi/js'
+  import { mdiTextBoxOutline } from '@mdi/js'
   import type { FileData } from 'src/api/File/File'
 
   export let row: FileData
@@ -12,12 +12,6 @@
     <ElementAndText>
       <Icon slot="element" icon={mdiTextBoxOutline} />
       <span slot="text">{row.name}</span>
-    </ElementAndText>
-  </TableCell>
-  <TableCell width="250px">
-    <ElementAndText>
-      <Icon slot="element" icon={mdiGoogleDrive} />
-      <span slot="text">{row.location}</span>
     </ElementAndText>
   </TableCell>
   <TableCell width="200px">

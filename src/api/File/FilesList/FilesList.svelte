@@ -18,9 +18,6 @@
           <h3>Name</h3>
         </TableHead>
         <TableHead>
-          <h3>Location</h3>
-        </TableHead>
-        <TableHead>
           <h3>Owner</h3>
         </TableHead>
         <TableHead>
