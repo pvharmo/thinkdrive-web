@@ -60,12 +60,14 @@
 
 <RenameDialog
   open={openDialogRename}
+  isFile={selectedFiles.length > 0}
   currentName={selectedFolders.length > 0 ? selectedFolders[0]?.name : selectedFiles[0]?.name}
   on:close={() => (openDialogRename = false)}
 />
 
 <MoveDialog
   open={openDialogMove}
+  isFile={selectedFiles.length > 0}
   currentName={selectedFolders.length > 0 ? selectedFolders[0]?.name : selectedFiles[0]?.name}
   on:close={() => (openDialogMove = false)}
 />

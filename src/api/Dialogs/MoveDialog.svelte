@@ -1,6 +1,7 @@
 <script lang="ts">
   import { Dialog, Button } from 'minmat'
   import { listContent, move as moveFolder } from 'src/api/Folder/Folder'
+  import { move as moveFile } from 'src/api/File/File'
   import type { Folder } from 'src/api/Folder/Folder'
   import { location } from 'svelte-spa-router'
   import { createEventDispatcher, onMount } from 'svelte'
@@ -13,6 +14,7 @@
 
   export let open = false
   export let currentName = ''
+  export let isFile = false
 
   let currentLocation = '/'
   let folders: Folder[] = []
@@ -20,10 +22,17 @@
 
   const moveFolderInteraction = async () => {
     try {
-      await moveFolder(
-        $location + currentName + '/',
-        currentLocation + (selectedFolder ? selectedFolder.name + '/' : '') + currentName + '/'
-      )
+      if (isFile) {
+        await moveFile(
+          $location + currentName,
+          currentLocation + (selectedFolder ? selectedFolder.name + '/' : '') + currentName
+        )
+      } else {
+        await moveFolder(
+          $location + currentName + '/',
+          currentLocation + (selectedFolder ? selectedFolder.name + '/' : '') + currentName + '/'
+        )
+      }
       fetchFilesAndFolders($location)
     } catch (e) {
       console.error(e)
