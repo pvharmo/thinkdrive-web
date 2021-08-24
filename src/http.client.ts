@@ -24,7 +24,7 @@ export const del = async (path: string): Promise<any> => {
   ).json()
 }
 
-export const put = async (path: string, body: any) => {
+export const put = async (path: string, body?: any) => {
   return await (
     await client(apiUri + path, {
       method: 'Put',

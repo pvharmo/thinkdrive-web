@@ -10,6 +10,10 @@ export const destroy = async (path: string) => {
   return await http.del(`object/${user.id}${path}`)
 }
 
+export const toTrash = async (path: string) => {
+  return await http.put(`object/trash/${user.id}${path}`)
+}
+
 export const move = async (path: string, newPath: string) => {
   return await http.put(`object/move/${user.id}${path}`, {
     newPath
