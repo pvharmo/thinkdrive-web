@@ -4,6 +4,7 @@
   import NewDialog from 'src/api/Dialogs/NewDialog.svelte'
   import { mdiHistory, mdiStarOutline, mdiTrashCanOutline } from '@mdi/js'
   import UploadDialog from 'src/api/Dialogs/UploadDialog.svelte'
+  import { push } from 'svelte-spa-router'
 
   let openDialogUpload = false
 
@@ -43,7 +44,7 @@
       <span slot="text">Following</span>
     </ElementAndText>
   </ListItem>
-  <ListItem>
+  <ListItem on:click={() => push('/.trash/')}>
     <ElementAndText>
       <Icon slot="element" icon={mdiTrashCanOutline} />
       <span slot="text">Trash</span>
