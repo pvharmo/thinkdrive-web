@@ -20,7 +20,7 @@ export const destroy = async (path: string) => {
 }
 
 export const move = async (path: string, newPath: string) => {
-  return await http.put(`container/${user.id}${path}`, {
+  return await http.put(`container/move/${user.id}${path}`, {
     newPath
   })
 }

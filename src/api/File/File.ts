@@ -11,7 +11,7 @@ export const destroy = async (path: string) => {
 }
 
 export const move = async (path: string, newPath: string) => {
-  return await http.put(`object/${user.id}${path}`, {
+  return await http.put(`object/move/${user.id}${path}`, {
     newPath
   })
 }
