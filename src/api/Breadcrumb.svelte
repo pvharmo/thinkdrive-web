@@ -6,7 +6,7 @@
   $: folders = $location.split('/').slice(1, -1)
 
   const go = (i: number) => {
-    const path = '/' + folders.slice(0, i).join() + '/'
+    const path = '/' + folders.slice(0, i).join('/') + '/'
     push(path)
   }
 </script>
