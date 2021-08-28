@@ -13,15 +13,17 @@
 {#if folders.length > 0}
   <Grid container>
     {#each folders as folder}
-      <Grid>
-        <FolderComponent
-          selected={selected.includes(folder)}
-          on:click={() => dispatch('select', { value: folder })}
-          on:dblclick={() => dispatch('goto', { value: folder.location + folder.name + '/' })}
-        >
-          {folder.name}
-        </FolderComponent>
-      </Grid>
+      {#if folder.name[0] !== '.'}
+        <Grid>
+          <FolderComponent
+            selected={selected.includes(folder)}
+            on:click={() => dispatch('select', { value: folder })}
+            on:dblclick={() => dispatch('goto', { value: folder.location + folder.name + '/' })}
+          >
+            {folder.name}
+          </FolderComponent>
+        </Grid>
+      {/if}
     {/each}
   </Grid>
 {:else}

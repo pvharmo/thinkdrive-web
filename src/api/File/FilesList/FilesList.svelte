@@ -27,11 +27,13 @@
     </thead>
     <tbody>
       {#each rows as row}
-        <FileRow
-          {row}
-          selected={selected.includes(row)}
-          on:click={() => dispatch('select', { value: row })}
-        />
+        {#if row.name[0] !== '.'}
+          <FileRow
+            {row}
+            selected={selected.includes(row)}
+            on:click={() => dispatch('select', { value: row })}
+          />
+        {/if}
       {/each}
     </tbody>
   </Table>
