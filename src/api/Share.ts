@@ -1,5 +1,5 @@
 import * as http from 'src/http.client'
-import user from 'src/user'
+import { getUser } from 'src/user'
 
 export interface userScope {
   userId: string
@@ -12,9 +12,9 @@ export interface SharingStatus {
 }
 
 export const updateStatus = async (path: string, status: SharingStatus) => {
-  await http.put(`share/${user.id}${path}`, { sharingStatus: status })
+  await http.put(`share/${(await getUser()).id}${path}`, { sharingStatus: status })
 }
 
 export const getStatus = async (path: string): Promise<SharingStatus> => {
-  return await http.get(`share/${user.id}${path}`)
+  return await http.get(`share/${(await getUser()).id}${path}`)
 }

@@ -1,6 +1,6 @@
 const client = fetch
 
-const apiUri = 'http://localhost:3000/'
+const apiUri = 'http://drive.local.io/server/'
 
 export const get = async (path: string): Promise<any> => {
   return await (await client(apiUri + path)).json()
