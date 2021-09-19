@@ -1,6 +1,6 @@
 import App from './App.svelte'
 import '../public/styles/theme.css'
-import '../public/styles/material.css'
+import '../public/styles/typography.css'
 
 const app = new App({
   target: document.body
