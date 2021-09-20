@@ -2,7 +2,7 @@
   import { Button, List, ListItem, Paper, Icon, ElementAndText } from 'minmat'
   import Popover from 'minmat/utils/Popover.svelte'
   import NewDialog from 'src/api/Dialogs/NewDialog.svelte'
-  import { mdiHistory, mdiStarOutline, mdiTrashCanOutline } from '@mdi/js'
+  import { mdiTrashCanOutline } from '@mdi/js'
   import UploadDialog from 'src/api/Dialogs/UploadDialog.svelte'
   import { push } from 'svelte-spa-router'
   import FolderTree from 'src/components/TreeView.svelte'
@@ -34,18 +34,6 @@
 </div>
 <List>
   <FolderTree path="/" name="/" />
-  <ListItem>
-    <ElementAndText>
-      <Icon slot="element" icon={mdiHistory} />
-      <span slot="text">Recent</span>
-    </ElementAndText>
-  </ListItem>
-  <ListItem>
-    <ElementAndText>
-      <Icon slot="element" icon={mdiStarOutline} />
-      <span slot="text">Following</span>
-    </ElementAndText>
-  </ListItem>
   <ListItem on:click={() => push('/.trash/')}>
     <ElementAndText>
       <Icon slot="element" icon={mdiTrashCanOutline} />
