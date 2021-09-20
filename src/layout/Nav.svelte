@@ -5,6 +5,7 @@
   import { mdiHistory, mdiStarOutline, mdiTrashCanOutline } from '@mdi/js'
   import UploadDialog from 'src/api/Dialogs/UploadDialog.svelte'
   import { push } from 'svelte-spa-router'
+  import FolderTree from 'src/components/TreeView.svelte'
 
   let openDialogUpload = false
 
@@ -32,6 +33,7 @@
   </Popover>
 </div>
 <List>
+  <FolderTree path="/" name="/" />
   <ListItem>
     <ElementAndText>
       <Icon slot="element" icon={mdiHistory} />

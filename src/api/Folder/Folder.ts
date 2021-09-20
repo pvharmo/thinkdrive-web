@@ -4,12 +4,10 @@ import type { GenericObject } from '../object'
 
 export interface Folder extends GenericObject {}
 
-export const listContent = async (path: string) => {
+export const listContent = async (path: string): Promise<GenericObject[]> => {
   if (path[path.length - 1] !== '/') {
     path += '/'
   }
-  console.log(await getUser())
-  console.log(path)
   return await http.get(`container/${(await getUser()).id}${path}`)
 }
 
