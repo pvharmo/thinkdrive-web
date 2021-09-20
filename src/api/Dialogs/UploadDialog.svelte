@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Dialog, Button } from 'minmat'
+  import { Dialog, Button, Card } from 'minmat'
   import { upload } from 'src/api/File/File'
   import { location } from 'svelte-spa-router'
   import { createEventDispatcher } from 'svelte'
@@ -26,6 +26,8 @@
 </script>
 
 <Dialog {open} on:close>
-  <input type="file" bind:files multiple />
-  <Button on:click={renameFolderInteraction}>Confirm</Button>
+  <Card>
+    <input type="file" bind:files multiple />
+    <Button on:click={renameFolderInteraction}>Confirm</Button>
+  </Card>
 </Dialog>

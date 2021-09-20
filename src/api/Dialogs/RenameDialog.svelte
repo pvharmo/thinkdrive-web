@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Dialog, Button } from 'minmat'
+  import { Dialog, Button, Card } from 'minmat'
   import { move as moveFolder } from 'src/api/Folder/Folder'
   import { move as moveFile } from 'src/api/File/File'
   import { location } from 'svelte-spa-router'
@@ -32,6 +32,8 @@
 </script>
 
 <Dialog {open} on:close>
-  <input bind:value={newName} />
-  <Button on:click={renameFolderInteraction}>Confirm</Button>
+  <Card>
+    <input bind:value={newName} />
+    <Button on:click={renameFolderInteraction}>Confirm</Button>
+  </Card>
 </Dialog>

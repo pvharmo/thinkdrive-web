@@ -1,10 +1,10 @@
 <script lang="ts">
-  import { Dialog, Button } from 'minmat'
+  import { Dialog, Button, Card } from 'minmat'
   import { listContent, move as moveFolder } from 'src/api/Folder/Folder'
   import { move as moveFile } from 'src/api/File/File'
   import type { Folder } from 'src/api/Folder/Folder'
   import { location } from 'svelte-spa-router'
-  import { createEventDispatcher, onMount } from 'svelte'
+  import { createEventDispatcher } from 'svelte'
   import { fetchFilesAndFolders } from 'src/api/actions'
   import FoldersList from 'src/api/Folder/FoldersList/FoldersList.svelte'
   import { ObjectType } from 'src/api/object'
@@ -50,22 +50,20 @@
   }
 
   const reloadPath = (_: boolean) => {
-    goto('/')
+    goto($location)
   }
 
   $: reloadPath(open)
-
-  onMount(() => {
-    goto('/')
-  })
 </script>
 
 <Dialog {open} on:close>
-  <FoldersList
-    {folders}
-    selected={selectedFolder ? [selectedFolder] : []}
-    on:select={(event) => (selectedFolder = event.detail.value)}
-    on:goto={(event) => goto(event.detail.value)}
-  />
-  <Button on:click={moveFolderInteraction}>Confirm</Button>
+  <Card>
+    <FoldersList
+      {folders}
+      selected={selectedFolder ? [selectedFolder] : []}
+      on:select={(event) => (selectedFolder = event.detail.value)}
+      on:goto={(event) => goto(event.detail.value)}
+    />
+    <Button on:click={moveFolderInteraction}>Confirm</Button>
+  </Card>
 </Dialog>

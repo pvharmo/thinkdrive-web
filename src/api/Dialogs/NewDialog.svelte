@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Dialog, Button } from 'minmat'
+  import { Dialog, Button, Card } from 'minmat'
   import { create as createFolder } from 'src/api/Folder/Folder'
   import { location } from 'svelte-spa-router'
   import { createEventDispatcher } from 'svelte'
@@ -28,6 +28,8 @@
 </script>
 
 <Dialog {open} on:close>
-  <input bind:value={name} />
-  <Button on:click={create}>Confirm</Button>
+  <Card>
+    <input bind:value={name} />
+    <Button on:click={create}>Confirm</Button>
+  </Card>
 </Dialog>
