@@ -27,7 +27,6 @@
       <List>
         <ListItem on:click={() => createObject({ type: 'folder' })}>Create folder</ListItem>
         <ListItem on:click={() => (openDialogUpload = true)}>Upload</ListItem>
-        <ListItem>Item 3</ListItem>
       </List>
     </Paper>
   </Popover>
