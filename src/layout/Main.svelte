@@ -37,6 +37,10 @@
     }
   }
 
+  const gotoObject = (event: CustomEvent) => {
+    file.download(event.detail.value)
+  }
+
   const deleteObject = async () => {
     if (selectedFiles.length > 0) {
       if (confirm(`Are you sure you want to delete this ${selectedFiles[0].name}?`)) {
@@ -102,7 +106,7 @@
 </div>
 <div class="files">
   <h3>Files</h3>
-  <FileList rows={$files} on:select={(event) => select('object', event)} selected={selectedFiles} />
+  <FileList rows={$files} on:select={(event) => select('object', event)} on:goto={(event) => gotoObject(event)} selected={selectedFiles} />
 </div>
 
 <style>

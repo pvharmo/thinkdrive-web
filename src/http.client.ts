@@ -1,16 +1,18 @@
 const client = fetch
 
-const apiUri = 'http://drive.local.io/server/'
+const apiUri = 'http://localhost:3000/'
 
 export const get = async (path: string): Promise<any> => {
-  return await (await client(apiUri + path)).json()
+  return await (await client(apiUri + path, {
+    headers: { 'x-user': '123456' }
+  })).json()
 }
 
 export const post = async (path: string, body?: any): Promise<any> => {
   return await (
     await client(apiUri + path, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', 'x-user': '123456' },
       body: JSON.stringify(body)
     })
   ).json()
@@ -19,7 +21,10 @@ export const post = async (path: string, body?: any): Promise<any> => {
 export const del = async (path: string): Promise<any> => {
   return await (
     await client(apiUri + path, {
-      method: 'DELETE'
+      method: 'DELETE',
+      headers: {
+        'x-user': '123456'
+      }
     })
   ).json()
 }
@@ -28,7 +33,7 @@ export const put = async (path: string, body?: any) => {
   return await (
     await client(apiUri + path, {
       method: 'Put',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', 'x-user': '123456' },
       body: JSON.stringify(body)
     })
   ).json()

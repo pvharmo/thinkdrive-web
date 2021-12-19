@@ -15,13 +15,13 @@
     <thead>
       <TableRow>
         <TableHead>
-          <h3>Name</h3>
+          <h3>Nom</h3>
         </TableHead>
         <TableHead>
-          <h3>Owner</h3>
+          <h3>Propriétaire</h3>
         </TableHead>
         <TableHead>
-          <h3>Last modified</h3>
+          <h3>Dernière modification</h3>
         </TableHead>
       </TableRow>
     </thead>
@@ -32,6 +32,7 @@
             {row}
             selected={selected.includes(row)}
             on:click={() => dispatch('select', { value: row })}
+            on:dblclick={() => dispatch('goto', { value: row.contentUrl })}
           />
         {/if}
       {/each}
@@ -39,7 +40,7 @@
   </Table>
 {:else}
   <div class="empty-list">
-    <h2 class="empty-list">No Files</h2>
+    <h2 class="empty-list">Aucun fichier</h2>
   </div>
 {/if}
 

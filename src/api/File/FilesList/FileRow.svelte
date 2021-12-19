@@ -7,7 +7,7 @@
   export let selected: boolean = false
 </script>
 
-<TableRow highlight={selected} interactive on:click>
+<TableRow highlight={selected} interactive on:click on:dblclick>
   <TableCell width="auto">
     <ElementAndText>
       <Icon slot="element" icon={mdiTextBoxOutline} />

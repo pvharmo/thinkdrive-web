@@ -2,7 +2,9 @@ import * as http from 'src/http.client'
 import { getUser } from 'src/user'
 import type { GenericObject } from '../object'
 
-export interface Folder extends GenericObject {}
+export interface Folder extends GenericObject {
+  contentUrl: string
+}
 
 export const listContent = async (path: string): Promise<GenericObject[]> => {
   if (path[path.length - 1] !== '/') {

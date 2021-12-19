@@ -1,5 +1,3 @@
-const apiBasePath = 'http://drive.local.io/.ory/kratos/public'
-
 export interface User {
   id: string
 }
@@ -14,10 +12,7 @@ export const getUser = async () => {
 }
 
 export const fetchUser = async () => {
-  const res = await fetch(apiBasePath + '/sessions/whoami')
-  const data = await res.json()
-  if (data.error?.code === 401) {
-    throw 'User is not logged in'
+  user = {
+    id: '123456'
   }
-  user = data.identity
 }

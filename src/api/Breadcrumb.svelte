@@ -3,7 +3,7 @@
   import { Icon, Button } from 'minmat'
   import { mdiChevronRight } from '@mdi/js'
 
-  $: folders = $location.split('/').slice(1, -1)
+  $: folders = $location.replace('//', '/').split('/').slice(1, -1)
 
   const go = (i: number) => {
     const path = '/' + folders.slice(0, i).join('/') + '/'

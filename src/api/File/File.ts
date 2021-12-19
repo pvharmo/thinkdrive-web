@@ -4,6 +4,7 @@ import { getUser } from 'src/user'
 
 export interface FileData extends GenericObject {
   lastModified: string
+  contentUrl: string
 }
 
 export const destroy = async (path: string) => {
