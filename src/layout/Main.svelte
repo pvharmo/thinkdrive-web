@@ -2,8 +2,6 @@
   import Breadcrumb from 'src/api/Breadcrumb.svelte'
   import { Toolbar } from 'minmat'
   import ObjectActions from 'src/api/ObjectActions.svelte'
-  import { push } from 'svelte-spa-router'
-  import { location } from 'svelte-spa-router'
   import { fetchFilesAndFolders } from 'src/api/actions'
   import * as folder from 'src/api/Folder/Folder'
   import * as file from 'src/api/File/File'
@@ -13,8 +11,9 @@
   import { files, folders } from 'src/api/store'
   import FoldersList from 'src/api/Folder/FoldersList/FoldersList.svelte'
   import ShareDialog from 'src/api/Dialogs/ShareDialog.svelte'
+  import { directory } from '../stores/filesystem'
 
-  $: fetchFilesAndFolders($location)
+  $: fetchFilesAndFolders($directory.format())
 
   let selectedFolders: folder.Folder[] = []
   let selectedFiles: file.FileData[] = []
@@ -45,12 +44,12 @@
     if (selectedFiles.length > 0) {
       if (confirm(`Are you sure you want to delete this ${selectedFiles[0].name}?`)) {
         await file.toTrash(selectedFiles[0].location + selectedFiles[0].name)
-        fetchFilesAndFolders($location)
+        fetchFilesAndFolders($directory.format())
       }
     } else {
       if (confirm(`Are you sure you want to delete ${selectedFolders[0].name}?`)) {
         await folder.toTrash(selectedFolders[0].location + selectedFolders[0].name + '/')
-        fetchFilesAndFolders($location)
+        fetchFilesAndFolders($directory.format())
       }
     }
   }
@@ -101,7 +100,7 @@
     folders={$folders}
     selected={selectedFolders}
     on:select={(event) => select('container', event)}
-    on:goto={(event) => push(event.detail.value)}
+    on:goto={(event) => directory.set(event.detail.value)}
   />
 </div>
 <div class="files">

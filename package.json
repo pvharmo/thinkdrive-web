@@ -14,9 +14,11 @@
   "dependencies": {
     "@mdi/font": "^5.9.55",
     "@mdi/js": "^5.9.55",
+    "@types/path-browserify": "^1.0.0",
+    "minmat": "^0.1.15",
+    "path-browserify": "^1.0.1",
     "svelte": "^3.37.0",
-    "svelte-spa-router": "^3.1.0",
-    "minmat": "^0.1.15"
+    "svelte-spa-router": "^3.1.0"
   },
   "devDependencies": {
     "@snowpack/plugin-dotenv": "^2.1.0",
