@@ -7,33 +7,27 @@ export interface FileData extends GenericObject {
 }
 
 export const destroy = async (path: string) => {
-  return await http.action('destroy', {
-    path: `${path}`
-  })
-}
-
-export const toTrash = async (path: string) => {
-  return await http.action('trash', {
+  return await http.action('destroyFile', {
     path: `${path}`
   })
 }
 
 export const move = async (path: string, newPath: string) => {
-  return await http.action('move', {
+  return await http.action('moveFile', {
     path: `${path}`,
     newPath
   })
 }
 
 export const upload = async (path: string, file: File) => {
-  const { presignedUrl } = await http.action('upload', {
+  const { presignedUrl } = await http.action('uploadFile', {
     path: `${path}`
   })
   await fetch(presignedUrl, { method: 'PUT', body: file })
 }
 
 export const download = async (path: string) => {
-  const { presignedUrl } = await http.action('get', {
+  const { presignedUrl } = await http.action('getFile', {
     path: `${path}`
   })
   window.open(presignedUrl)

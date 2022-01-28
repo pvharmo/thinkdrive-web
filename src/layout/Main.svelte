@@ -23,7 +23,7 @@
   let openDialogShare = false
 
   const downloadObject = () => {
-    file.download(selectedFiles[0].location + selectedFiles[0].name)
+    file.download(selectedFiles[0].contentUrl)
   }
 
   const select = (type: string, event: CustomEvent) => {
@@ -43,12 +43,12 @@
   const deleteObject = async () => {
     if (selectedFiles.length > 0) {
       if (confirm(`Are you sure you want to delete this ${selectedFiles[0].name}?`)) {
-        await file.toTrash(selectedFiles[0].location + selectedFiles[0].name)
+        await file.destroy(selectedFiles[0].contentUrl)
         fetchFilesAndFolders($directory.format())
       }
     } else {
       if (confirm(`Are you sure you want to delete ${selectedFolders[0].name}?`)) {
-        await folder.toTrash(selectedFolders[0].location + selectedFolders[0].name + '/')
+        await folder.destroy(selectedFolders[0].contentUrl)
         fetchFilesAndFolders($directory.format())
       }
     }

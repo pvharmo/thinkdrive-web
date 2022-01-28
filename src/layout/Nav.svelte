@@ -5,7 +5,8 @@
   import { mdiTrashCanOutline } from '@mdi/js'
   import UploadDialog from 'src/api/Dialogs/UploadDialog.svelte'
   import { push } from 'svelte-spa-router'
-  import FolderTree from 'src/components/TreeView.svelte'
+  import TreeView from 'src/components/TreeView.svelte'
+  import { directory } from '../stores/filesystem'
 
   let openDialogUpload = false
 
@@ -32,7 +33,7 @@
   </Popover>
 </div>
 <List>
-  <FolderTree path="/" name="/" />
+  <TreeView on:select={(event) => {directory.set(event.detail.contentUrl)}} />
   <ListItem on:click={() => push('/.trash/')}>
     <ElementAndText>
       <Icon slot="element" icon={mdiTrashCanOutline} />

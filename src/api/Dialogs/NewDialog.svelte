@@ -1,9 +1,9 @@
 <script lang="ts">
   import { Dialog, Button, Card } from 'minmat'
   import { create as createFolder } from 'src/api/Folder/Folder'
-  import { location } from 'svelte-spa-router'
   import { createEventDispatcher } from 'svelte'
   import { fetchFilesAndFolders } from 'src/api/actions'
+  import { directory } from '../../stores/filesystem'
 
   const dispatch = createEventDispatcher()
 
@@ -15,14 +15,14 @@
   const create = async () => {
     switch (obj.type) {
       case 'folder':
-        await createFolder($location, name)
+        await createFolder($directory.format(), name)
         break
 
       default:
-        await createFolder($location, name)
+        await createFolder($directory.format(), name)
         break
     }
-    fetchFilesAndFolders($location)
+    fetchFilesAndFolders($directory.format())
     dispatch('close')
   }
 </script>

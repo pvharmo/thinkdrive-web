@@ -2,7 +2,7 @@
   import { Dialog, Button, Card } from 'minmat'
   import { move as moveFolder } from 'src/api/Folder/Folder'
   import { move as moveFile } from 'src/api/File/File'
-  import { location } from 'svelte-spa-router'
+  import { directory } from '../../stores/filesystem'
   import { createEventDispatcher } from 'svelte'
   import { fetchFilesAndFolders } from 'src/api/actions'
 
@@ -17,11 +17,11 @@
   const renameFolderInteraction = async () => {
     try {
       if (isFile) {
-        await moveFile($location + currentName, $location + newName)
-        fetchFilesAndFolders($location)
+        await moveFile($directory.format() + currentName, $directory.format() + newName)
+        fetchFilesAndFolders($directory.format())
       } else {
-        await moveFolder($location + currentName + '/', $location + newName + '/')
-        fetchFilesAndFolders($location)
+        await moveFolder($directory.format() + currentName + '/', $directory.format() + newName + '/')
+        fetchFilesAndFolders($directory.format())
       }
     } catch (e) {
       console.error(e)

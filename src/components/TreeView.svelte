@@ -1,12 +1,19 @@
 <script lang="ts">
   import { onMount } from 'svelte'
-  import * as folder from 'src/api/Folder/Folder'
+  import * as folderActions from 'src/api/Folder/Folder'
   import { List, ListItem } from 'minmat'
   import Ripple from 'minmat/utils/Ripple.svelte'
-  import { push } from 'svelte-spa-router'
+  import { createEventDispatcher } from 'svelte'
+  import { ObjectType } from '../api/object'
 
-  export let path: string
-  export let name: string
+  const dispatch = createEventDispatcher()
+
+  export let folder: folderActions.Folder = {
+    name: "/",
+    type: ObjectType.container,
+    location: "/",
+    contentUrl: "/123456/",
+  }
 
   let children: any[] = []
 
@@ -16,11 +23,11 @@
   }
 
   const gotoFolder = () => {
-    push(path)
+    dispatch('select', folder)
   }
 
   onMount(async () => {
-    const childFolders = await folder.listContent(path)
+    const childFolders = await folderActions.listContent(folder.contentUrl)
     children = childFolders.filter((x) => x.type === 'container')
   })
 </script>
@@ -34,7 +41,7 @@
     <div class="item" on:click={gotoFolder} style="flex: 1;">
       <Ripple />
       <span>
-        {name}
+        {folder.name}
       </span>
     </div>
   </li>
@@ -43,7 +50,7 @@
     <li style="padding-left:15px;">
       <List style="padding:0; flex:1;">
         {#each children as child}
-          <svelte:self name={child.name} path={path + child.name + '/'} />
+          <svelte:self folder={child} on:select />
         {/each}
       </List>
     </li>
@@ -51,7 +58,7 @@
 {:else}
   <ListItem style="height:30px;" on:click={gotoFolder}>
     <span class="no-arrow" />
-    {name}
+    {folder.name}
   </ListItem>
 {/if}
 

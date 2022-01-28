@@ -1,7 +1,7 @@
 <script lang="ts">
   import { Dialog, Button, Card } from 'minmat'
   import { upload } from 'src/api/File/File'
-  import { location } from 'svelte-spa-router'
+  import { directory } from '../../stores/filesystem'
   import { createEventDispatcher } from 'svelte'
   import { fetchFilesAndFolders } from 'src/api/actions'
 
@@ -14,9 +14,9 @@
   const renameFolderInteraction = async () => {
     try {
       for (const file of files) {
-        await upload($location + file.name, file)
+        await upload($directory.format() + file.name, file)
       }
-      fetchFilesAndFolders($location)
+      fetchFilesAndFolders($directory.format())
     } catch (e) {
       console.error(e)
     } finally {

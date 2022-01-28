@@ -3,17 +3,20 @@ import nodePath, {PathObject} from 'path-browserify'
 
 export class Path {
   #path: PathObject
+  #isFolder: boolean
 
   constructor(path: string | Path) {
     if (typeof path == 'string') {
       this.#path = nodePath.parse(path)
+      this.#isFolder = path.substr(-1) == "/"
     } else {
       this.#path = path.attributes
+      this.#isFolder = path.isFolder
     }
   }
 
   format(): string {
-    return nodePath.format(this.#path)
+    return nodePath.format(this.#path) + (this.#isFolder? '/': '')
   }
 
   toArray(): string[] {
@@ -24,8 +27,16 @@ export class Path {
     return nodePath.isAbsolute(this.format())
   }
 
+  get isFolder() {
+    return this.#isFolder
+  }
+
   get attributes() {
     return this.#path
+  }
+
+  get name() {
+    return this.#path.name
   }
 
   join(path: string): Path {

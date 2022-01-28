@@ -40,7 +40,7 @@ export const put = async (path: string, body?: any) => {
 }
 
 export const action = async (action: string, params: any|undefined): Promise<any> => {
-  return (await client(apiUri, {
+  const res = await client(apiUri, {
     method: 'POST',
     headers : {
       'Content-Type': 'application/json',
@@ -50,5 +50,10 @@ export const action = async (action: string, params: any|undefined): Promise<any
       'data-source': 's3'
     },
     body: JSON.stringify(params)
-  })).json()
+  })
+  try {
+    return await res.json()
+  } catch {
+    return
+  }
 }

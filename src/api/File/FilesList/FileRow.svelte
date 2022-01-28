@@ -15,13 +15,6 @@
     </ElementAndText>
   </TableCell>
   <TableCell width="200px">
-    <ElementAndText>
-      <!-- <Avatar slot="element" image={row.ownerAvatar} alt="avatar" />
-      <span slot="text">{row.owner}</span> -->
-      <span slot="text">You</span>
-    </ElementAndText>
-  </TableCell>
-  <TableCell width="200px">
     <!-- <span>{row.lastModified}</span> -->
     <span>Yesterday at 9:34</span>
   </TableCell>

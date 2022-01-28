@@ -18,9 +18,6 @@
           <h3>Nom</h3>
         </TableHead>
         <TableHead>
-          <h3>Propriétaire</h3>
-        </TableHead>
-        <TableHead>
           <h3>Dernière modification</h3>
         </TableHead>
       </TableRow>

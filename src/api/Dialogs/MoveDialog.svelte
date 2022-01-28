@@ -1,14 +1,11 @@
 <script lang="ts">
   import { Dialog, Button, Card } from 'minmat'
-  import { listContent, move as moveFolder } from 'src/api/Folder/Folder'
+  import { move as moveFolder, Folder } from 'src/api/Folder/Folder'
   import { move as moveFile } from 'src/api/File/File'
-  import type { Folder } from 'src/api/Folder/Folder'
-  import { location } from 'svelte-spa-router'
   import { createEventDispatcher } from 'svelte'
   import { fetchFilesAndFolders } from 'src/api/actions'
-  import FoldersList from 'src/api/Folder/FoldersList/FoldersList.svelte'
-  import { ObjectType } from 'src/api/object'
-  import type { GenericObject } from 'src/api/object'
+  import TreeView from '../../components/TreeView.svelte'
+  import { directory } from '../../stores/filesystem'
 
   const dispatch = createEventDispatcher()
 
@@ -16,54 +13,35 @@
   export let currentName = ''
   export let isFile = false
 
-  let currentLocation = '/'
-  let folders: Folder[] = []
   let selectedFolder: Folder | undefined
+
+  let onSelected = (folder: Folder) => (selectedFolder = folder)
 
   const moveFolderInteraction = async () => {
     try {
       if (isFile) {
         await moveFile(
-          $location + currentName,
-          currentLocation + (selectedFolder ? selectedFolder.name + '/' : '') + currentName
+          $directory.format() + currentName,
+          selectedFolder?.contentUrl + currentName
         )
       } else {
         await moveFolder(
-          $location + currentName + '/',
-          currentLocation + (selectedFolder ? selectedFolder.name + '/' : '') + currentName + '/'
+          $directory.format() + currentName + '/',
+          selectedFolder?.contentUrl + currentName + '/'
         )
       }
-      fetchFilesAndFolders($location)
+      fetchFilesAndFolders($directory.format())
     } catch (e) {
       console.error(e)
     } finally {
       dispatch('close')
     }
   }
-
-  const goto = async (path: string) => {
-    currentLocation = path
-    folders = (await listContent(currentLocation)).filter(
-      (x: GenericObject) => x.type === ObjectType.container
-    )
-    selectedFolder = undefined
-  }
-
-  const reloadPath = (_: boolean) => {
-    goto($location)
-  }
-
-  $: reloadPath(open)
 </script>
 
 <Dialog {open} on:close>
   <Card>
-    <FoldersList
-      {folders}
-      selected={selectedFolder ? [selectedFolder] : []}
-      on:select={(event) => (selectedFolder = event.detail.value)}
-      on:goto={(event) => goto(event.detail.value)}
-    />
+    <TreeView on:select={(event) => onSelected(event.detail)} />
     <Button on:click={moveFolderInteraction}>Confirm</Button>
   </Card>
 </Dialog>
